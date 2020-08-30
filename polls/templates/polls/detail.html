@@ -12,14 +12,15 @@
 	<div class="container vh-100 d-flex">
         <div class="jumbotron m-auto">
             {% if latest_question_list %}
-            <h1>Questions</h1>
-            {% for question in latest_question_list %}
-            <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
-            {% endfor %} {% else %}
-            <p>No polls are available.</p>
+                <h1>{{ question.question_text }}</h1>
+                {% for choice in question.choice_set.all %}
+                    <li>{{ choice.choice_text }}</li>
+                {% endfor %}
+            {% else %}
+                <p>No polls are available.</p>
             {% endif %}
         </div>
-	</div>
+    </div>
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 	 crossorigin="anonymous">
